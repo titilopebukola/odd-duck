@@ -98,21 +98,76 @@ function handleClick(event) {
     // remove the event listener so the game ends
     imgContainer.removeEventListener("click", handleClick);
     // maybe rnder results?
-    renderResults();
+    renderChart();
   } else {
     renderProducts();
   }
 }
 
-function renderResults() {
-  const resultsList = document.getElementById("results-list");
+// function renderResults() {
+//   const resultsList = document.getElementById("results-list");
+
+//   for (let i = 0; i < Product.allProducts.length; i++) {
+//     let theProduct = Product.allProducts[i];
+//     let li = document.createElement("li");
+//     li.textContent = `${theProduct.name}: ${theProduct.clicks} clicks ${theProduct.views} views`;
+//     resultsList.appendChild(li);
+//   }
+// }
+
+function renderChart() {
+  let labelArray = [];
+  let clicksArray = [];
+  let viewsArray = [];
 
   for (let i = 0; i < Product.allProducts.length; i++) {
-    let theProduct = Product.allProducts[i];
-    let li = document.createElement("li");
-    li.textContent = `${theProduct.name}: ${theProduct.clicks} clicks ${theProduct.views} views`;
-    resultsList.appendChild(li);
+    let product = Product.allProducts[i];
+    labelArray.push(product.name);
+    clicksArray.push(product.clicks);
+    viewsArray.push(product.views);
   }
+  const data = {
+    labels: labelArray,
+    datasets: [
+      {
+        label: "views",
+        data: viewsArray,
+        backgroundColour: ["yellow", "pink"],
+        borderColor: ["pink", "yellow"],
+        borderWidth: 1,
+      },
+      {
+        label: "Clicks",
+        data: clicksArray,
+        backgroundColor: ["teal", "acqua"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const config = {
+    type: "bar",
+    data: data,
+    options: {
+      indexAxis: "y",
+      scales: {
+        x: {
+          ticks: {
+            color: "white",
+          },
+        },
+        y: {
+          ticks: {
+            color: "white",
+          },
+          beginAtZero: true,
+        },
+      },
+    },
+  };
+
+  let canvasChart = document.getElementById("myChart");
+  const myChart = new Chart(canvasChart, config);
 }
 
 const imgContainer = document.getElementById("img-container");

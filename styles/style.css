@@ -11,7 +11,7 @@ body {
 }
 
 #siteLogo {
-  width: 250px;
+  width: 200px;
 }
 
 /* grid styles */
@@ -22,9 +22,17 @@ header {
   color: whitesmoke;
 }
 
+h1 {
+  font-size: 5rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  line-height: 0.8;
+}
+
 .results {
   grid-area: 2 / 1 / 3 / 2;
-  height: 500px;
+
   background-color: #808000;
   color: whitesmoke;
   padding-left: 0.5rem;
@@ -32,7 +40,8 @@ header {
 }
 main {
   grid-area: 2 / 2 / 3 / 3;
-  background-color: #669900;
+  background-color: #334d00;
+  color: whitesmoke;
 }
 
 footer {
@@ -62,4 +71,8 @@ main {
 
 img {
   width: 30%;
+}
+
+#myChart {
+  color: whitesmoke;
 }
